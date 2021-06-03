@@ -4,8 +4,10 @@ class AppColors {
   // Basic colors
   static const lightBackgroundColor = const Color(0xFFFFFFFF);
   static const darkBackgroundColor = const Color(0xFF000000);
+  static const greyColor = const Color(0xFF9c9c9c);
+  static const lightGreyColor = const Color(0xFFf8f8f8);
 
-  static final primaryColor = MaterialColor(0xffCF0A2C, {
+  static final primaryColor = MaterialColor(0xfff07150, {
     50: Color.fromRGBO(207, 10, 44, 0.1),
     100: Color.fromRGBO(207, 10, 44, 0.2),
     200: Color.fromRGBO(207, 10, 44, 0.3),
