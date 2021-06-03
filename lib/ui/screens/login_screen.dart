@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_food/core/data/viewmodel/login_viewmodel.dart';
 import 'package:zzoopp_food/ui/styles/colors.dart';
+import 'package:zzoopp_food/ui/styles/custome_textField.dart';
+import 'package:zzoopp_food/ui/styles/string_constants.dart';
 import 'package:zzoopp_food/ui/styles/text_button_styles.dart';
+import 'package:zzoopp_food/ui/styles/text_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -22,216 +25,215 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginView extends ViewModelWidget<LoginViewModel> {
+  TextEditingController _emailController, _passwordController;
+  bool isRemember = false;
+
   @override
   Widget build(BuildContext context, LoginViewModel viewModel) {
-    return Center(
-        child: GestureDetector(
+    return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Stack(
-        children:[
+        children: [
           SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                "assets/images/ic_launcher_foreground.png",
-                fit: BoxFit.fill,
-                width: 200,
-                height: 200,
-              ),
-              Stack(
+            child: Container(
+      height: MediaQuery.of(context).size.height,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      focusNode: viewModel.mobileFocus,
-                      controller: viewModel.mobileTextEditingcontroller,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(left: 90),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey)),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey)),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                  Stack(
+                    children: [
+                      Image.asset(
+                        "assets/images/img_bg.png",
+                        fit: BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 3,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: FractionalTranslation(
+                          translation: Offset(0.0, 0.9),
+                          child: Image.asset(
+                            "assets/images/img_logo.png",
+                            fit: BoxFit.contain,
                           ),
-                          hintText: "Mobile number"),
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                        LengthLimitingTextInputFormatter(10)
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          controller: _emailController,
+                          hint: hintEmail,
+                          icon: Icon(Icons.person),
+                        ),
+                        SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _passwordController,
+                          hint: hintPassword,
+                          icon: Icon(Icons.lock),
+                          obsecure: true,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    value: this.isRemember,
+                                    onChanged: (bool value) {
+                                      // setState(() {
+                                      //   this.value = value;
+                                      // });
+                                    },
+                                  ),
+                                  TextWidget(
+                                    text: rememberMe,
+                                    size: 14,
+                                    weight: FontWeight.w400,
+                                    color: AppColors.greyColor,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: TextWidget(
+                                  text: forgetPassword,
+                                  size: 14,
+                                  fontStyle: FontStyle.italic,
+                                  weight: FontWeight.w400,
+                                  color: AppColors.greyColor,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: 37,
+                              width: 120,
+                              child: TextButton(
+                                  onPressed: () {
+                                    viewModel.loginValidation(context);
+                                  },
+                                  style: TextButtonStyles.getTextButtonStyle(
+                                    padding: EdgeInsets.only(left: 10, right: 10),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                child: TextWidget(
+                                  text: login,
+                                  size: 16,
+                                  weight: FontWeight.w400,
+                                  color: AppColors.lightBackgroundColor,
+                                )
+                                 ),
+                            ),
+                            Container(width: 170,)
+                          ],
+                        ),
+                        SizedBox(height: 30),
+                        TextWidget(
+                          text: loginWith,
+                          size: 14,
+                          weight: FontWeight.w600,
+                          color: AppColors.darkBackgroundColor,
+                        ),
+                        SizedBox(height: 10),
+
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RawMaterialButton(
+                              onPressed: () {},
+                              elevation: 2.0,
+                              fillColor: AppColors.lightGreyColor,
+                              child: Image.asset(
+                                "assets/images/img_fb.png",
+                                fit: BoxFit.contain,
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              shape: CircleBorder(),
+                            ),
+                            RawMaterialButton(
+                              onPressed: () {},
+                              elevation: 2.0,
+                              fillColor: AppColors.lightGreyColor,
+                              child: Image.asset(
+                                "assets/images/img_fb.png",
+                                fit: BoxFit.contain,
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              shape: CircleBorder(),
+                            ),
+                            RawMaterialButton(
+                              onPressed: () {},
+                              elevation: 2.0,
+                              fillColor: AppColors.lightGreyColor,
+                              child: Image.asset(
+                                "assets/images/img_fb.png",
+                                fit: BoxFit.contain,
+                              ),
+                              padding: EdgeInsets.all(15.0),
+                              shape: CircleBorder(),
+                            ),
+                          ],
+                        ),
+            SizedBox(height: 20),
+
+              RichText(
+          text: TextSpan(
+          children: <TextSpan>[
+              TextSpan(
+              text:newUser,
+              style: GoogleFonts.openSans(
+                    color: AppColors.greyColor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400)),
+          TextSpan(
+              text: signUp,
+              style: GoogleFonts.nunito(
+                    color: AppColors.primaryColor,
+                    fontSize:12,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w400)),
+        ],
+      ),
+    ),
+                        SizedBox(height: 30,)
                       ],
                     ),
                   ),
-                  Positioned(
-                      left: 10,
-                      top: 2,
-                      bottom: 2,
-                      child: Container(
-                          color: Colors.grey.withOpacity(0.5),
-                          height: 45,
-                          width: 80,
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Image.asset(
-                                "assets/images/ic_indian_flag.png",
-                                height: 30,
-                                width: 30,
-                              ),
-                              SizedBox(width: 6),
-                              Text("+91")
-                            ],
-                          )))
                 ],
               ),
-              SizedBox(
-                height: viewModel.isOtp ? 10 : 0,
-              ),
-              viewModel.isOtp
-                  ? Stack(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: TextField(
-                            focusNode: viewModel.otpFocus,
-                            controller: viewModel.otpTextEditingcontroller,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 10),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                disabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
-                                ),
-                                hintText: "Enter OTP"),
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                              LengthLimitingTextInputFormatter(6)
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                            right: 15,
-                            top: 2,
-                            bottom: 2,
-                            child: TextButton(
-                                onPressed: () {
-                                  viewModel.resendOtpLoginAndRegisterApi(viewModel.mobileTextEditingcontroller.text, referOtp: viewModel.loginModel.otpId.toString(), context: context);
-                                },
-                                style: TextButtonStyles.getTextButtonStyle(
-                                  color: Colors.white,
-                                  padding: EdgeInsets.only(left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                child: Text(
-                                  "Resend OTP",
-                                  style:
-                                      TextStyle(color: Colors.black, fontSize: 16),
-                                ))),
-                      ],
-                    )
-                  : Container(),
-              SizedBox(height: 30),
-              CheckboxListTile(
-                title: RichText(
-                    text: TextSpan(
-                        text: 'I accept the',
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: ' Terms Of Service',
-                        style: TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 18,
-                            decoration: TextDecoration.underline),
-                      ),
-                      TextSpan(
-                        text: ' and ',
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                      TextSpan(
-                        text: 'Privacy Policy',
-                        style: TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 18,
-                            decoration: TextDecoration.underline),
-                      )
-                    ])), //    <-- label
-                value: viewModel.isCheckBox,
-                onChanged: (newValue) {
-                  viewModel.checkBoxUpdate(newValue);
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-              ),
-              SizedBox(height: 40),
-              Container(
-                width: MediaQuery.of(context).size.width - 20,
-                height: 50,
-                child: TextButton(
-                    onPressed: () {
-                      viewModel.loginValidation(context);
-                    },
-                    style: TextButtonStyles.getTextButtonStyle(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    child: Text(
-                      "SIGN IN",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700),
-                    )),
-              ),
-              SizedBox(height: 30),
-              Container(
-                  width: MediaQuery.of(context).size.width - 20,
-                  height: 50,
-                  child: TextButton(
-                      onPressed: () {
-                        /*Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterScreen()),
-                        );*/
-                      },
-                      style: TextButtonStyles.getTextButtonStyle(
-                        color: Colors.black,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                      ),
-                      child: Text(
-                        "CREATE AN ACCOUNT",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700),
-                      ))),
-              SizedBox(height: 30),
-            ],
+            ),
           ),
-        ),
           Visibility(
               visible: viewModel.isBusy,
               child: Center(
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      AppColors.primaryColor),
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
                 ),
               )),
         ],
       ),
-    ));
+    );
   }
 }
