@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zzoopp_food/core/basics/enums/api_result_type.dart';
+import 'package:zzoopp_customer/core/basics/enums/api_result_type.dart';
 
 import 'api_response.dart';
 

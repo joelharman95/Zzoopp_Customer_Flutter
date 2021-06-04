@@ -1,4 +1,4 @@
-package com.tbt.zzoopp_food
+package com.tbt.zzoopp_customer
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,8 +7,8 @@ class ProdParameter extends BaseParameter {
             appName: "Zzoopp Food",
             clientId: "",
             clientSecret: "",
-            gmapWebKey: "AIzaSyC0_qlfTtQXCqDJkM7prmZXljV78aZ-UZY",
-            baseUrl: "https://d1.storenxt.in/api/customer/");
+            gmapWebKey: "AIzaSyDNtNt5hQpHyYe4t_0cnOw5Pd8VgtEfxdc",
+            baseUrl: "https://1d1.storenxt.in/api/customer/");
 
   @override
   Flavor get flavor => Flavor.production;

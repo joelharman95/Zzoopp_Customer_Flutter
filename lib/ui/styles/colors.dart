@@ -4,7 +4,7 @@ class AppColors {
   // Basic colors
   static const lightBackgroundColor = const Color(0xFFFFFFFF);
   static const darkBackgroundColor = const Color(0xFF000000);
-  static const greyColor = const Color(0xFF9c9c9c);
+  static  const greyColor = const Color(0xFF9c9c9c);
   static const lightGreyColor = const Color(0xFFf8f8f8);
 
   static final primaryColor = MaterialColor(0xfff07150, {

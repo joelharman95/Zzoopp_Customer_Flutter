@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "136847415769",
+    "project_id": "zzoop-customer",
+    "storage_bucket": "zzoop-customer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136847415769:android:e20e8ef505c48e9741e1c8",
+        "android_client_info": {
+          "package_name": "com.tbt.zzoopp_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136847415769-2ijrdmipvera7n7vgqivukd77k29k8c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQgL1vWcJIOqe9V0wca_f_V3IjlOBgKtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136847415769-2ijrdmipvera7n7vgqivukd77k29k8c3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "136847415769-enbea7me16dqab24mru3nmfqkb3311ds.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tbt.zzoopp-customer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

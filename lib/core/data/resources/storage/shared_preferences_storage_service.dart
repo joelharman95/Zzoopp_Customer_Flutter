@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zzoopp_food/app/locator.config.dart';
-import 'package:zzoopp_food/core/basics/abstract/storage_service_interface.dart';
+import 'package:zzoopp_customer/app/locator.config.dart';
+import 'package:zzoopp_customer/core/basics/abstract/storage_service_interface.dart';
 
 class SharedPreferencesStorageService implements StorageServiceInterface {
   SharedPreferences _preferences = locator<SharedPreferences>();

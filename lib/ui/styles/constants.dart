@@ -1,12 +1,16 @@
 class AppConstants {
 
-  static String validateMobile(String value) {
-    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    RegExp regExp = new RegExp(pattern);
+  static String validateMobileOrEmail(String value) {
+    String mobileNoPattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    String emailPattern = r'(^(?:9)?[a-z][A-Z][0-9]@[a-z].[a-z]{2,3}$)';
+    RegExp mobileNoRegExp = new RegExp(mobileNoPattern);
+    RegExp emailRegExp = new RegExp(emailPattern);
     if (value.length == 0) {
       return 'Please enter mobile number';
-    } else if (!regExp.hasMatch(value)) {
+    } else if (!mobileNoRegExp.hasMatch(value)) {
       return 'Please enter a valid mobile number';
+    }else if (!emailRegExp.hasMatch(value)) {
+      return 'Please enter a valid email address';
     }
     return null;
   }

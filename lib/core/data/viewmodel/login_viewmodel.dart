@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:zzoopp_food/app/locator.config.dart';
-import 'package:zzoopp_food/app/routes/routes.dart';
-import 'package:zzoopp_food/core/basics/abstract/storage_service_interface.dart';
-import 'package:zzoopp_food/core/data/models/response/login_model.dart';
-import 'package:zzoopp_food/core/data/resources/api/clients/login_api.dart';
-import 'package:zzoopp_food/core/data/resources/api/response/api_response.dart';
-import 'package:zzoopp_food/core/data/resources/storage/storage_keys.dart';
-import 'package:zzoopp_food/core/service/dialog.service.dart';
-import 'package:zzoopp_food/ui/styles/constants.dart';
+import 'package:zzoopp_customer/app/locator.config.dart';
+import 'package:zzoopp_customer/app/routes/routes.dart';
+import 'package:zzoopp_customer/core/basics/abstract/storage_service_interface.dart';
+import 'package:zzoopp_customer/core/data/models/response/login_model.dart';
+import 'package:zzoopp_customer/core/data/resources/api/clients/login_api.dart';
+import 'package:zzoopp_customer/core/data/resources/api/response/api_response.dart';
+import 'package:zzoopp_customer/core/data/resources/storage/storage_keys.dart';
+import 'package:zzoopp_customer/core/service/dialog.service.dart';
+import 'package:zzoopp_customer/ui/styles/constants.dart';
 
 class LoginViewModel extends BaseViewModel {
-  TextEditingController mobileTextEditingcontroller = TextEditingController();
-  TextEditingController otpTextEditingcontroller = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool isOtp = false;
   FocusNode mobileFocus = FocusNode();
   FocusNode otpFocus = FocusNode();
@@ -25,30 +25,26 @@ class LoginViewModel extends BaseViewModel {
 
     if (isOtp) {
       if (isCheckBox) {
-        if (otpTextEditingcontroller.text.isNotEmpty &&
-            otpTextEditingcontroller.text.length == 6) {
+        if (passwordController.text.isNotEmpty && passwordController.text.length == 6) {
           otpFocus.unfocus();
-          await sendOtpLoginRegisterApi(mobileTextEditingcontroller.text,
-              otp: otpTextEditingcontroller.text, context: context);
-        } else if (otpTextEditingcontroller.text.isEmpty) {
-          message = "Enter OTP";
+          await sendOtpLoginRegisterApi(userNameController.text, otp: passwordController.text, context: context);
+        } else if (passwordController.text.isEmpty) {
+          message = "Enter your password";
         } else {
-          message = "The entered OTP is invalid.";
+          message = "Your password is invalid.";
         }
       } else {
         message = "Please accept the Terms of Services & Privacy Policies";
       }
     } else {
-      if (AppConstants.validateMobile(mobileTextEditingcontroller.text) ==
-          null) {
+      if (AppConstants.validateMobileOrEmail(userNameController.text) == null) {
         if (isCheckBox) {
-          await sendOtpLoginRegisterApi(mobileTextEditingcontroller.text,
-              context: context);
+          await sendOtpLoginRegisterApi(userNameController.text, context: context);
         } else {
           message = "Please accept the Terms of Services & Privacy Policies";
         }
       } else {
-        message = "Please enter a valid mobile number";
+        message = "Please enter a your registered mobile number or email address";
       }
     }
     if (message.isNotEmpty) DialogService.of(context).showError(message);
@@ -78,18 +74,15 @@ class LoginViewModel extends BaseViewModel {
             MaterialPageRoute(
                 builder: (context) => RegisterScreen(
                     isOtp: true,
-                    mobileNumber: mobileTextEditingcontroller.text)),
+                    mobileNumber: userNameController.text)),
           );*/
         } else {
           isOtp = true;
         }
         if (otp != null) {
-          StorageServiceInterface storageServiceInterface =
-              locator<StorageServiceInterface>();
-          storageServiceInterface.save(
-              StorageKey.token, loginModel.token);
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.home, (Route<dynamic> route) => false);
+          StorageServiceInterface storageServiceInterface = locator<StorageServiceInterface>();
+          storageServiceInterface.save(StorageKey.token, loginModel.token);
+          Navigator.of(context).pushNamedAndRemoveUntil(Routes.home, (Route<dynamic> route) => false);
         }
       } else {
         final message = response?.errorMessage;
@@ -102,12 +95,10 @@ class LoginViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  resendOtpLoginAndRegisterApi(String mobileNumber,
-      {String referOtp, BuildContext context}) async {
+  resendOtpLoginAndRegisterApi(String mobileNumber, {String referOtp, BuildContext context}) async {
     setBusy(true);
     try {
-      ApiResponse response = await locator<LoginApi>()
-          .resendOtpLoginAndRegister(mobileNumber, referOtp);
+      ApiResponse response = await locator<LoginApi>().resendOtpLoginAndRegister(mobileNumber, referOtp);
       if (response.succeed) {
         Map<String, dynamic> data = response.json['data'];
         loginModel = LoginModel.fromJson(data);
@@ -121,4 +112,5 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
     setBusy(false);
   }
+
 }

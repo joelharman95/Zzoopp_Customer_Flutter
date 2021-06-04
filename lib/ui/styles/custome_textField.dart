@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zzoopp_food/ui/styles/colors.dart';
+import 'package:zzoopp_customer/ui/styles/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final Icon icon;

@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:zzoopp_food/app/locator.config.dart';
-import 'package:zzoopp_food/core/basics/abstract/api_resource.dart';
-import 'package:zzoopp_food/core/basics/abstract/storage_service_interface.dart';
-import 'package:zzoopp_food/core/basics/enums/api_error_type.dart';
-import 'package:zzoopp_food/core/data/resources/api/response/api_response.dart';
-import 'package:zzoopp_food/core/data/resources/storage/storage_keys.dart';
+import 'package:zzoopp_customer/app/locator.config.dart';
+import 'package:zzoopp_customer/core/basics/abstract/api_resource.dart';
+import 'package:zzoopp_customer/core/basics/abstract/storage_service_interface.dart';
+import 'package:zzoopp_customer/core/basics/enums/api_error_type.dart';
+import 'package:zzoopp_customer/core/data/resources/api/response/api_response.dart';
+import 'package:zzoopp_customer/core/data/resources/storage/storage_keys.dart';
 
 import 'api_interceptor.dart';
 

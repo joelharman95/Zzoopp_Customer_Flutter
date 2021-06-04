@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:zzoopp_food/app/app.dart';
-import 'package:zzoopp_food/app/locator.config.dart';
-import 'package:zzoopp_food/app/routes/routes.dart';
-import 'package:zzoopp_food/core/basics/abstract/storage_service_interface.dart';
-import 'package:zzoopp_food/core/data/resources/storage/storage_keys.dart';
-import 'package:zzoopp_food/ui/styles/colors.dart';
+import 'package:zzoopp_customer/app/app.dart';
+import 'package:zzoopp_customer/app/locator.config.dart';
+import 'package:zzoopp_customer/app/routes/routes.dart';
+import 'package:zzoopp_customer/core/basics/abstract/storage_service_interface.dart';
+import 'package:zzoopp_customer/core/data/resources/storage/storage_keys.dart';
+import 'package:zzoopp_customer/ui/styles/colors.dart';
 
 void mainCommon(Function() initializeEnvironmentVariables) {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,8 @@ void mainCommon(Function() initializeEnvironmentVariables) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: AppColors.primaryColor));
     await initializeEnvironmentVariables();
 
+    // Initializing firebase
+    await Firebase.initializeApp();
     // Initializing dependencies
     await setupLocator();
     // await appConfig.checkInstallationId();

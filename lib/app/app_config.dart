@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:zzoopp_food/app/parameters/base_parameters.dart';
-import 'package:zzoopp_food/app/routes/router.dart';
+import 'package:zzoopp_customer/app/parameters/base_parameters.dart';
+import 'package:zzoopp_customer/app/routes/router.dart';
 
 import 'parameters/base_parameters.dart';
 

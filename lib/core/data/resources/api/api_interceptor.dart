@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:zzoopp_food/core/basics/typedefs/argument_callback.dart';
-import 'package:zzoopp_food/core/data/resources/api/response/api_response.dart';
+import 'package:zzoopp_customer/core/basics/typedefs/argument_callback.dart';
+import 'package:zzoopp_customer/core/data/resources/api/response/api_response.dart';
 
 @injectable
 class ApiInterceptor {

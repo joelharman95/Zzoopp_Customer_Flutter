@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zzoopp_food/core/service/dialog.service.dart';
+import 'package:zzoopp_customer/core/service/dialog.service.dart';
 
 class ServiceProvider extends StatelessWidget {
   ServiceProvider({Key key, @required this.builder}) : super(key: key);

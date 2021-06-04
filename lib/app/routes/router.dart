@@ -1,6 +1,6 @@
-import 'package:zzoopp_food/app/routes/routes.dart';
+import 'package:zzoopp_customer/app/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:zzoopp_food/ui/screens/login_screen.dart';
+import 'package:zzoopp_customer/ui/screens/login_screen.dart';
 
 class AppRouter {
   PageRoute generateMainRoute(RouteSettings settings) {

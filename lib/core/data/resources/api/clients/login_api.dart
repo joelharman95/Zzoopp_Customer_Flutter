@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:zzoopp_food/core/basics/abstract/api_resource.dart';
-import 'package:zzoopp_food/core/data/resources/api/rest_service.dart';
-import 'package:zzoopp_food/core/data/resources/api/response/api_response.dart';
+import 'package:zzoopp_customer/core/basics/abstract/api_resource.dart';
+import 'package:zzoopp_customer/core/data/resources/api/rest_service.dart';
+import 'package:zzoopp_customer/core/data/resources/api/response/api_response.dart';
 
 @singleton
 class LoginApi extends ApiResource {

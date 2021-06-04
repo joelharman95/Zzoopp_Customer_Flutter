@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zzoopp_food/app/app_config.dart';
-import 'package:zzoopp_food/core/service/inherited_provider.dart';
-import 'package:zzoopp_food/ui/styles/colors.dart';
+import 'package:zzoopp_customer/app/app_config.dart';
+import 'package:zzoopp_customer/core/service/inherited_provider.dart';
+import 'package:zzoopp_customer/ui/styles/colors.dart';
 
 class ZzooppApp extends StatefulWidget with WidgetsBindingObserver {
   final String initialRoute;

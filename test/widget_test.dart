@@ -7,9 +7,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zzoopp_food/app/app.dart';
+import 'package:zzoopp_customer/app/app.dart';
 
-import 'package:zzoopp_food/app/main.dart';
+import 'package:zzoopp_customer/app/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

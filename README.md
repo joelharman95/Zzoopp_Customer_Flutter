@@ -1,4 +1,4 @@
-# zzoopp_food
+# zzoopp_customer
 
 A new Flutter application.
 

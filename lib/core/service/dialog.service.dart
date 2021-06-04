@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zzoopp_food/ui/styles/colors.dart';
+import 'package:zzoopp_customer/ui/styles/colors.dart';
 
 class DialogService extends StatefulWidget {
   DialogService({Key key, this.builder}) : super(key: key);
@@ -137,7 +137,7 @@ class _DialogContainer {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 5),
-            Image.asset("assets/images/ic_launcher.png"),
+            Image.asset("assets/images/img_logo.png"),
             SizedBox(height: 10),
             Container(
               padding: EdgeInsets.only(left: 20, right: 20),
