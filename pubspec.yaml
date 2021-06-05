@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.5
   google_maps_flutter: ^2.0.5
   dots_indicator: ^2.0.0
+  otp_text_field: ^1.1.1
   flutter_signin_button: ^2.0.0
   google_sign_in: ^5.0.4
   flutter_facebook_login: ^3.0.0
