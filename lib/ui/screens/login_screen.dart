@@ -6,6 +6,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_customer/core/data/viewmodel/login_viewmodel.dart';
 import 'package:zzoopp_customer/ui/screens/register_screen.dart';
+import 'package:zzoopp_customer/ui/screens/verify_otp_screen.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
 import 'package:zzoopp_customer/ui/styles/custome_textField.dart';
 import 'package:zzoopp_customer/ui/styles/string_constants.dart';
@@ -113,6 +114,8 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
                                 alignment: Alignment.topRight,
                                 child: GestureDetector(
                                   onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyOtpScreen()),);
+
                                   },
                                   child: TextWidget(
                                     text: forgetPassword,

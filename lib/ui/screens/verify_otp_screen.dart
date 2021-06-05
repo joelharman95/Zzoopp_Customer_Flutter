@@ -43,7 +43,7 @@ class _VerifyOtpView extends ViewModelWidget<VerifyOtpViewModel> {
     return Image.asset("assets/images/img_bg.png",
       fit: BoxFit.fill,
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2.4,
+      height: MediaQuery.of(context).size.height / 2.7,
     );
   }
 
@@ -122,7 +122,7 @@ class _VerifyOtpView extends ViewModelWidget<VerifyOtpViewModel> {
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Column(
                       children: [
-                        Container(height: height/3.7,),
+                        Container(height: height/4.1,),
                         _logo(context),
                         _otpViewSuccessful(),
                         _fieldWidgets(verifyOtpViewModel),  //  TODO  ::  ::  Need to remove the replace widget with otp 6 digit view
