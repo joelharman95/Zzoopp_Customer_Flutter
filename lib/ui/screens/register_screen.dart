@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_customer/core/data/viewmodel/register_viewmodel.dart';
+import 'package:zzoopp_customer/ui/screens/profile_screen.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
 import 'package:zzoopp_customer/ui/styles/custome_textField.dart';
 import 'package:zzoopp_customer/ui/styles/text_button_styles.dart';
@@ -52,8 +53,8 @@ class _RegisterView extends ViewModelWidget<RegisterViewModel> {
         _entryField("Phone Number", registerViewModel.phoneNoController, Icon(Icons.phone_in_talk_outlined), TextInputType.phone, TextInputAction.next),
         _entryField("Email", registerViewModel.emailController, Icon(Icons.email_outlined), TextInputType.emailAddress, TextInputAction.next),
         _entryField("Address", registerViewModel.addressController, Icon(Icons.location_on_outlined), TextInputType.streetAddress, TextInputAction.next),
-        _entryField("Create Password", registerViewModel.passwordController, Icon(Icons.lock_outline), TextInputType.visiblePassword, TextInputAction.next, isPassword: true),
-        _entryField("Confirm Password", registerViewModel.confirmPasswordController, Icon(Icons.lock_outline), TextInputType.visiblePassword, TextInputAction.done, isPassword: true),
+        _entryField("Create Password", registerViewModel.passwordController, Icon(Icons.lock), TextInputType.visiblePassword, TextInputAction.next, isPassword: true),
+        _entryField("Confirm Password", registerViewModel.confirmPasswordController, Icon(Icons.lock), TextInputType.visiblePassword, TextInputAction.done, isPassword: true),
       ],
     );
   }
@@ -65,6 +66,8 @@ class _RegisterView extends ViewModelWidget<RegisterViewModel> {
       child: TextButton(
         onPressed: () {
           registerViewModel.isFieldValid(context);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()),);
+
         },
         style: TextButtonStyles.getTextButtonStyle(
           padding: EdgeInsets.only(left: 10, right: 10),

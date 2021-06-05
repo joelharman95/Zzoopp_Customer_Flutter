@@ -6,7 +6,6 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_customer/core/data/viewmodel/login_viewmodel.dart';
 import 'package:zzoopp_customer/ui/screens/register_screen.dart';
-import 'package:zzoopp_customer/ui/screens/verify_otp_screen.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
 import 'package:zzoopp_customer/ui/styles/custome_textField.dart';
 import 'package:zzoopp_customer/ui/styles/string_constants.dart';
@@ -114,8 +113,7 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
                                 alignment: Alignment.topRight,
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyOtpScreen()));
-                                    },
+                                  },
                                   child: TextWidget(
                                     text: forgetPassword,
                                     size: 14,
@@ -144,13 +142,13 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),
-                                  child: TextWidget(
-                                    text: login,
-                                    size: 16,
-                                    weight: FontWeight.w400,
-                                    color: AppColors.lightBackgroundColor,
-                                  )
-                                   ),
+                                    child: TextWidget(
+                                      text: login,
+                                      size: 16,
+                                      weight: FontWeight.w400,
+                                      color: AppColors.lightBackgroundColor,
+                                    )
+                                ),
                               ),
                               Container(width: 170,)
                             ],
@@ -189,22 +187,22 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
                             child: RichText(
                               text: TextSpan(
                                 children: <TextSpan>[
-                              TextSpan(
-                                  text:newUser,
-                                  style: GoogleFonts.openSans(
-                                    color: AppColors.greyColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400)),
-                              TextSpan(
-                                  text: signUp,
-                                  style: GoogleFonts.nunito(
-                                        color: AppColors.primaryColor,
-                                        fontSize:12,
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.w400)),
-                                      ],
-                                    ),
-                                  ),
+                                  TextSpan(
+                                      text:newUser,
+                                      style: GoogleFonts.openSans(
+                                          color: AppColors.greyColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400)),
+                                  TextSpan(
+                                      text: signUp,
+                                      style: GoogleFonts.nunito(
+                                          color: AppColors.primaryColor,
+                                          fontSize:12,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400)),
+                                ],
+                              ),
+                            ),
                           ),
                           SizedBox(height: 10,)
                         ],
@@ -239,7 +237,7 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
     return credential;
   }
 
-  /*Future<FirebaseUser> signInWithApple() async {
+/*Future<FirebaseUser> signInWithApple() async {
     var redirectURL = "https://SERVER_AS_PER_THE_DOCS.glitch.me/callbacks/sign_in_with_apple";
     var clientID = "AS_PER_THE_DOCS";
     final appleIdCredential = await SignInWithApple.getAppleIDCredential(
