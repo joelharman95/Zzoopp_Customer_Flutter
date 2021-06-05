@@ -37,14 +37,14 @@ class LoginViewModel extends BaseViewModel {
         message = "Please accept the Terms of Services & Privacy Policies";
       }
     } else {
-      if (AppConstants.validateMobileOrEmail(userNameController.text) == null) {
+      if (!AppConstants.validateMobileOrEmail(userNameController.text)) {
         if (isCheckBox) {
           await sendOtpLoginRegisterApi(userNameController.text, context: context);
         } else {
           message = "Please accept the Terms of Services & Privacy Policies";
         }
       } else {
-        message = "Please enter a your registered mobile number or email address";
+        message = "Please enter your registered mobile number or email address";
       }
     }
     if (message.isNotEmpty) DialogService.of(context).showError(message);
@@ -57,8 +57,7 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  sendOtpLoginRegisterApi(String mobileNumber,
-      {String otp, BuildContext context}) async {
+  sendOtpLoginRegisterApi(String mobileNumber, {String otp, BuildContext context}) async {
     setBusy(true);
     try {
       ApiResponse response = await locator<LoginApi>().sendLoginOtp(mobileNumber, otp);

@@ -6,51 +6,56 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final bool obsecure;
+  final TextInputType textInputType;
+  final TextInputAction textInputAction;
 
   const CustomTextField({
     this.controller,
     this.hint,
     this.icon,
     this.obsecure,
+    this.textInputType,
+    this.textInputAction,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 305,
-      height: 47,
-      child: TextField(
-        textAlign: TextAlign.justify,
-        controller: controller,
-        obscureText: obsecure ?? false,
-        style: TextStyle(
-          fontSize: 16,
+    return Container(
+      child: Center(
+        child: TextField(
+          keyboardType: textInputType,
+          textInputAction: textInputAction,
+          textAlign: TextAlign.justify,
+          controller: controller,
+          obscureText: obsecure ?? false,
+          style: TextStyle(fontSize: 16,),
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.only(bottom: 20),
+              hintStyle: TextStyle(fontSize: 16),
+              hintText: hint,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6),
+                borderSide: BorderSide(
+                  color: AppColors.greyColor,
+                  width: 1,
+                ),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6),
+                borderSide: BorderSide(
+                  color: AppColors.greyColor,
+                  width: 1,
+                ),
+              ),
+              prefixIcon: Padding(
+                child: IconTheme(
+                  data: IconThemeData(color: AppColors.greyColor),
+                  child: icon,
+                ),
+                padding: EdgeInsets.only(left: 1),
+              )),
         ),
-        decoration: InputDecoration(
-            hintStyle: TextStyle(fontSize: 16),
-            hintText: hint,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
-              borderSide: BorderSide(
-                color: AppColors.greyColor,
-                width: 2,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
-              borderSide: BorderSide(
-                color: AppColors.greyColor,
-                width: 3,
-              ),
-            ),
-            prefixIcon: Padding(
-              child: IconTheme(
-                data: IconThemeData(color: AppColors.greyColor),
-                child: icon,
-              ),
-              padding: EdgeInsets.only(left: 10, right: 10,bottom: 10),
-            )),
       ),
     );
   }
