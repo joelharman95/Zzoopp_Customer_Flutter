@@ -10,7 +10,9 @@ import 'package:zzoopp_customer/core/data/viewmodel/register_viewmodel.dart';
 import 'package:zzoopp_customer/ui/screens/profile_screen.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
 import 'package:zzoopp_customer/ui/styles/custome_textField.dart';
+import 'package:zzoopp_customer/ui/styles/string_constants.dart';
 import 'package:zzoopp_customer/ui/styles/text_button_styles.dart';
+import 'package:zzoopp_customer/ui/styles/text_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
 
@@ -74,8 +76,12 @@ class _RegisterView extends ViewModelWidget<RegisterViewModel> {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        child: Text("Sign Up",
-          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+        child:TextWidget(
+          text: signUp,
+          size: 14,
+          fontStyle: FontStyle.normal,
+          weight: FontWeight.w600,
+          color: AppColors.lightBackgroundColor,
         ),
       ),
     );

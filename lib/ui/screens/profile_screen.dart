@@ -61,7 +61,8 @@ class _ProfileView extends ViewModelWidget<ProfileViewModel>{
         textInputAction:  textInputAction,
         suffixIcon: suffixIcon,
         suffixOnTap: () {
-          if(title == "Email") {
+        //             profileViewModel.isDatePicker(context);
+        if(title == "Email") {
             profileViewModel.isEmailValid(context);
           } else {
             profileViewModel.isMobileNoValid(context);
@@ -91,9 +92,11 @@ class _ProfileView extends ViewModelWidget<ProfileViewModel>{
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _entryField("Name", profileViewModel.nameController, Icon(Icons.person), TextInputType.text, TextInputAction.next),
-        _entryFieldWithSuffixIcon("Phone Number", "", context, Icon(Icons.arrow_forward_ios_outlined, size: 20,), profileViewModel, profileViewModel.phoneNoController, Icon(Icons.phone_in_talk_outlined), TextInputType.phone, TextInputAction.next),
-        _entryFieldWithSuffixIcon("Email", "Verify", context, Icon(Icons.arrow_forward_ios_outlined, size: 20,), profileViewModel, profileViewModel.emailController, Icon(Icons.email_outlined), TextInputType.emailAddress, TextInputAction.next),
         _entryField("Address", profileViewModel.addressController, Icon(Icons.location_on_outlined), TextInputType.streetAddress, TextInputAction.next),
+        _entryFieldWithSuffixIcon("Phone Number", "", context, Icon(Icons.arrow_forward_ios_outlined, size: 20,), profileViewModel, profileViewModel.phoneNoController, Icon(Icons.phone_in_talk_outlined), TextInputType.phone, TextInputAction.next),
+        _entryFieldWithSuffixIcon("Alter Phone Number", "", context, Icon(Icons.arrow_forward_ios_outlined, size: 20,), profileViewModel, profileViewModel.altPhoneNoController, Icon(Icons.phone_in_talk_outlined), TextInputType.phone, TextInputAction.next),
+        _entryFieldWithSuffixIcon("Email", "Verify", context, Icon(Icons.arrow_forward_ios_outlined, size: 20,), profileViewModel, profileViewModel.emailController, Icon(Icons.email_outlined), TextInputType.emailAddress, TextInputAction.next),
+        GestureDetector( onTap:()=>profileViewModel.isDatePicker(context),child:AbsorbPointer(child: _entryField("BirthDay",profileViewModel.dateOfBirthController, Icon(Icons.date_range), TextInputType.datetime, TextInputAction.next))),
         _textWithSuffixIcon("Change Password", context, Icon(Icons.arrow_forward_ios_outlined, size: 20,), Icon(Icons.lock_outline), true),
       ],
     );
