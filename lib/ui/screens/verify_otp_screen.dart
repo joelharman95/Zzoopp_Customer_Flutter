@@ -5,13 +5,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_customer/core/data/viewmodel/verify_otp_viewmodel.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
 import 'package:zzoopp_customer/ui/styles/custome_textField.dart';
 import 'package:zzoopp_customer/ui/styles/text_button_styles.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
 
 class VerifyOtpScreen extends StatelessWidget {
   @override
@@ -75,12 +74,54 @@ class _VerifyOtpView extends ViewModelWidget<VerifyOtpViewModel> {
         obsecure: isPassword,
         textInputType: textInputType,
         textInputAction:  textInputAction,
+        // isReadOnly : true,
       ),
     );
   }
 
   Widget _fieldWidgets(VerifyOtpViewModel verifyOtpViewModel) {
-    return _entryField("",verifyOtpViewModel.optController, Icon(Icons.phone_in_talk_outlined), TextInputType.phone, TextInputAction.done);
+    return _entryField("Enter phone number or email address",verifyOtpViewModel.phoneNoController, Icon(Icons.phone_in_talk_outlined), TextInputType.emailAddress, TextInputAction.done);
+  }
+
+  Widget _otpView(BuildContext context, TextEditingController optController) {
+    return PinCodeTextField(
+      appContext: context,
+      pastedTextStyle: TextStyle(
+        color: AppColors.greyColor,
+        fontWeight: FontWeight.bold,
+      ),
+      length: 6,
+      obscureText: true,
+      obscuringCharacter: '*',
+      blinkWhenObscuring: true,
+      animationType: AnimationType.fade,
+      validator: (v) {
+        if (v?.length < 6) {
+          return "Must be a six digit code";
+        } else {
+          return null;
+        }
+      },
+      pinTheme: PinTheme(
+        shape: PinCodeFieldShape.underline,
+        selectedColor: AppColors.primaryColor,
+        inactiveColor: AppColors.greyColor,
+        activeColor: AppColors.greyColor,
+        activeFillColor: Colors.white,
+      ),
+      animationDuration: Duration(milliseconds: 300),
+      enableActiveFill: false,
+      controller: optController,
+      keyboardType: TextInputType.number,
+      boxShadows: [
+        BoxShadow(
+          offset: Offset(0, 1),
+          color: Colors.transparent,
+        )
+      ],
+      onCompleted: (v) {},
+      onChanged: (String value) {  },
+    );
   }
 
   Widget _submitButton(BuildContext context, VerifyOtpViewModel verifyOtpViewModel) {
@@ -125,21 +166,9 @@ class _VerifyOtpView extends ViewModelWidget<VerifyOtpViewModel> {
                         Container(height: height/4.1,),
                         _logo(context),
                         _otpViewSuccessful(),
-                        _fieldWidgets(verifyOtpViewModel),  //  TODO  ::  ::  Need to remove the replace widget with otp 6 digit view
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: OTPTextField(
-                            length: 6,
-                            width: MediaQuery.of(context).size.width,
-                            fieldWidth: 60,
-                            style: TextStyle(fontSize: 14),
-                            textFieldAlignment: MainAxisAlignment.spaceAround,
-                            fieldStyle: FieldStyle.underline,
-                            onCompleted: (pin) {
-                              print("Completed: " + pin);
-                            },
-                          ),
-                        ),
+                        _fieldWidgets(verifyOtpViewModel),
+                        SizedBox(height: 10),
+                        _otpView(context, verifyOtpViewModel.optController),
                         SizedBox(height: 20),
                         _submitButton(context, verifyOtpViewModel),
                       ],

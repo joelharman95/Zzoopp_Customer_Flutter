@@ -67,7 +67,6 @@ class _RegisterView extends ViewModelWidget<RegisterViewModel> {
         onPressed: () {
           registerViewModel.isFieldValid(context);
           Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()),);
-
         },
         style: TextButtonStyles.getTextButtonStyle(
           padding: EdgeInsets.only(left: 10, right: 10),

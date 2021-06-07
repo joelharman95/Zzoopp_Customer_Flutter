@@ -1,23 +1,32 @@
+/*
+ * Created by Nethaji on 6/6/21 8:44 AM
+ * And last updated by Nethaji on 6/6/21 8:44 AM
+ */
+
 import 'package:flutter/material.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
 
-class CustomTextField extends StatelessWidget {
-  final Icon icon;
-  final String hint;
+class CustomTextFieldWithSuffixIcon extends StatelessWidget {
+  final Icon icon, suffixIcon;
+  final String hint, helperText;
   final TextEditingController controller;
   final bool obsecure;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
   final bool isReadOnly;
+  final Function suffixOnTap;
 
-  const CustomTextField({
+  const CustomTextFieldWithSuffixIcon({
     this.controller,
     this.hint,
+    this.helperText,
     this.icon,
+    this.suffixIcon,
     this.obsecure,
     this.textInputType,
     this.textInputAction,
     this.isReadOnly = false,
+    this.suffixOnTap,
     Key key,
   }) : super(key: key);
 
@@ -37,6 +46,7 @@ class CustomTextField extends StatelessWidget {
             contentPadding: EdgeInsets.only(bottom: 20),
               hintStyle: TextStyle(fontSize: 16),
               hintText: hint,
+              helperText: helperText == "" ? null : helperText,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
                 borderSide: BorderSide(
@@ -58,6 +68,10 @@ class CustomTextField extends StatelessWidget {
                 ),
                 padding: EdgeInsets.only(left: 1),
               ),
+            suffixIcon: InkWell(
+              onTap: () => suffixOnTap(),
+              child: suffixIcon,
+            ),
           ),
         ),
       ),

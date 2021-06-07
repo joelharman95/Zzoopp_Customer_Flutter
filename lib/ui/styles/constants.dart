@@ -29,4 +29,13 @@ class AppConstants {
     }
     return true;
   }
+
+  static bool isText(String value) {
+    String emailPattern = r'[a-zA-Z]';
+    RegExp emailRegExp = new RegExp(emailPattern);
+    if (emailRegExp.hasMatch(value)) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -31,4 +31,44 @@ class ProfileViewModel extends BaseViewModel {
     if (message.isNotEmpty) DialogService.of(context).showError(message);
     notifyListeners();
   }
+
+  isMobileNoValid(BuildContext context) async {
+    String message = "";
+    if (phoneNoController.text.isEmpty) {
+      message = "Enter your phone number";
+    } else if (phoneNoController.text.isNotEmpty && !AppConstants.isMobileNoValid(phoneNoController.text)) {
+      message = "Invalid phone number";
+    } else {
+      _verifyMobileOtp();
+    }
+    if (message.isNotEmpty) DialogService.of(context).showError(message);
+    notifyListeners();
+  }
+
+  _verifyMobileOtp() async {
+
+  }
+
+  isEmailValid(BuildContext context) async {
+    String message = "";
+    if (emailController.text.isEmpty) {
+      message = "Enter your email";
+    } else if (emailController.text.isNotEmpty && !AppConstants.isEmailValid(emailController.text)) {
+      message = "Invalid email address";
+    } else {
+      _verifyEmail();
+    }
+    if (message.isNotEmpty) DialogService.of(context).showError(message);
+    notifyListeners();
+  }
+
+  _verifyEmail() async {
+
+  }
+
+  logout(BuildContext context) async {  //  Need to take callback from positive and negative button
+    DialogService.of(context).showError("Sure want to logout");
+    notifyListeners();
+  }
+
 }
