@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_customer/app/locator.config.dart';
 import 'package:zzoopp_customer/app/routes/routes.dart';
@@ -9,6 +10,7 @@ import 'package:zzoopp_customer/core/data/resources/api/clients/login_api.dart';
 import 'package:zzoopp_customer/core/data/resources/api/response/api_response.dart';
 import 'package:zzoopp_customer/core/data/resources/storage/storage_keys.dart';
 import 'package:zzoopp_customer/core/service/dialog.service.dart';
+import 'package:zzoopp_customer/ui/screens/profile_screen.dart';
 import 'package:zzoopp_customer/ui/styles/constants.dart';
 
 class LoginViewModel extends BaseViewModel {
@@ -19,6 +21,10 @@ class LoginViewModel extends BaseViewModel {
   FocusNode otpFocus = FocusNode();
   bool isCheckBox = false;
   LoginModel loginModel;
+
+  bool _isLoggedIn = false;
+  GoogleSignInAccount _userObj;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
 
   loginValidation(BuildContext context) async {
     String message = "";
@@ -56,7 +62,14 @@ class LoginViewModel extends BaseViewModel {
     isCheckBox = value;
     notifyListeners();
   }
-
+   googleLogin(BuildContext context){
+     _googleSignIn.signIn().then((userData) {
+         _isLoggedIn = true;
+         _userObj = userData;
+     }).catchError((e) {
+       print(e);
+     });
+   }
   sendOtpLoginRegisterApi(String mobileNumber, {String otp, BuildContext context}) async {
     setBusy(true);
     try {

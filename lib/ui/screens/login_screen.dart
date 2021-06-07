@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zzoopp_customer/core/data/viewmodel/login_viewmodel.dart';
+import 'package:zzoopp_customer/ui/screens/profile_screen.dart';
 import 'package:zzoopp_customer/ui/screens/register_screen.dart';
 import 'package:zzoopp_customer/ui/screens/verify_otp_screen.dart';
 import 'package:zzoopp_customer/ui/styles/colors.dart';
@@ -32,7 +34,6 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
   @override
   Widget build(BuildContext context, LoginViewModel loginViewModel) {
     final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -51,12 +52,11 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
                         Container(height: height/4.1,),
                         _logo(context),
                         SizedBox(height: 30,),
-
                         _fieldWidgets(loginViewModel),
                         _forgotPasswordWidget(context,loginViewModel),
                         _submitButton(context, loginViewModel),
                         SizedBox(height: 20,),
-                        _loginWith(),
+                        _loginWith(loginViewModel,context),
                         SizedBox(height: 10,),
                         _signUpButton(context),
                         SizedBox(height: 10,),
@@ -99,7 +99,7 @@ class _LoginView extends ViewModelWidget<LoginViewModel> {
       ),
     );
   }
-Widget _loginWith(){
+Widget _loginWith(LoginViewModel loginViewModel, BuildContext context){
  return Column(
    children: [
      TextWidget(
@@ -114,7 +114,9 @@ Widget _loginWith(){
        crossAxisAlignment: CrossAxisAlignment.center,
        children: [
          RawMaterialButton(
-           onPressed: () {},
+           onPressed: () {
+
+           },
            elevation: 1.0,
            fillColor: AppColors.lightGreyColor,
            child: Image.asset(
@@ -125,7 +127,9 @@ Widget _loginWith(){
            shape: CircleBorder(),
          ),
          RawMaterialButton(
-           onPressed: () {},
+           onPressed: () {
+             loginViewModel.googleLogin(context);
+           },
            elevation: 1.0,
            fillColor: AppColors.lightGreyColor,
            child: Image.asset(
