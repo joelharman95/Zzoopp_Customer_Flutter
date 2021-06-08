@@ -22,13 +22,10 @@ class LoginViewModel extends BaseViewModel {
   bool isCheckBox = false;
   LoginModel loginModel;
 
-  bool _isLoggedIn = false;
-  GoogleSignInAccount _userObj;
   GoogleSignIn _googleSignIn = GoogleSignIn();
 
   loginValidation(BuildContext context) async {
     String message = "";
-
     if (isOtp) {
       if (isCheckBox) {
         if (passwordController.text.isNotEmpty && passwordController.text.length == 6) {
@@ -62,15 +59,33 @@ class LoginViewModel extends BaseViewModel {
     isCheckBox = value;
     notifyListeners();
   }
-   googleLogin(BuildContext context){
+
+  /*  Nethaji's SHA
+  SHA1: 60:4C:08:3B:CD:A9:E4:03:70:3D:30:C2:CF:F6:B6:C8:41:C5:28:FF
+  SHA-256: 02:C2:B1:74:FC:5D:76:23:AB:0A:4A:7B:51:C8:03:59:D7:15:F5:26:D5:FB:A4:55:79:FB:6A:45:CA:B1:F4:DB
+  * */
+  /*  Gayathri's SHA
+
+  * */
+   googleLogin(BuildContext context) async {
+     setBusy(true);
+     /*if(_googleSignIn.currentUser != null) {
+       _googleSignIn.signOut();
+     }*/
      _googleSignIn.signIn().then((userData) {
-         _isLoggedIn = true;
-         _userObj = userData;
-     }).catchError((e) {
-       print(e);
+         print('GET______' + userData.email);
+         print('GET______' + userData.displayName);
+         print('GET______' + userData.photoUrl);
+         notifyListeners();
+         setBusy(false);
+    }).catchError((e) {
+       print('Exception   ' + e);
+       notifyListeners();
+       setBusy(false);
      });
    }
-  sendOtpLoginRegisterApi(String mobileNumber, {String otp, BuildContext context}) async {
+
+   sendOtpLoginRegisterApi(String mobileNumber, {String otp, BuildContext context}) async {
     setBusy(true);
     try {
       ApiResponse response = await locator<LoginApi>().sendLoginOtp(mobileNumber, otp);
